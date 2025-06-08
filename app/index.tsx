@@ -106,6 +106,7 @@ export default function Index() {
         <View style={rightColumnStyle}>
           <ColorSection
             colors={colors}
+            isTablet={isTablet}
             addColor={addColor}
             locations={locations}
             updateColor={updateColor}
@@ -125,7 +126,6 @@ export default function Index() {
           />
 
           <PresetSection applyPreset={applyPreset} />
-
           {!isTablet && (
             <CodeOutput
               isTablet={isTablet}

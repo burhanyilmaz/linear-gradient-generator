@@ -5,6 +5,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type ColorSectionProps = {
   colors: string[];
+  isTablet: boolean;
   locations: string[];
   addColor: () => void;
   removeColor: (index: number) => void;
@@ -14,6 +15,7 @@ type ColorSectionProps = {
 
 const ColorSection = ({
   colors,
+  isTablet,
   addColor,
   locations,
   updateColor,
@@ -28,6 +30,7 @@ const ColorSection = ({
           <View style={styles.colorInputGroup}>
             <ColorInput
               value={color}
+              isTablet={isTablet}
               placeholder={`Color ${index + 1}`}
               onChangeText={(text) => updateColor(index, text)}
             />

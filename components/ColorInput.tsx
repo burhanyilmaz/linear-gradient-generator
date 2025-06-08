@@ -1,17 +1,29 @@
-import React from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+import ColorPickerModal from "./ColorPickerModal";
 
 type ColorInputProps = {
   value: string;
+  isTablet: boolean;
   placeholder: string;
   onChangeText: (text: string) => void;
 };
 
-const ColorInput = ({ value, onChangeText, placeholder }: ColorInputProps) => {
+const ColorInput = ({
+  value,
+  onChangeText,
+  placeholder,
+  isTablet,
+}: ColorInputProps) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <View style={styles.colorInputContainer}>
-        <View style={[styles.colorPreview, { backgroundColor: value }]} />
+        <TouchableOpacity
+          onPress={() => setShowModal(true)}
+          style={[styles.colorPreview, { backgroundColor: value }]}
+        />
         <TextInput
           value={value}
           style={styles.colorInput}
@@ -20,6 +32,13 @@ const ColorInput = ({ value, onChangeText, placeholder }: ColorInputProps) => {
           placeholderTextColor="#71717a"
         />
       </View>
+      <ColorPickerModal
+        value={"green"}
+        isTablet={isTablet}
+        visible={showModal}
+        onClose={() => setShowModal(false)}
+        onComplete={(data) => onChangeText(data.hex)}
+      />
     </>
   );
 };
