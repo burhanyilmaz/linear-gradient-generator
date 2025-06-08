@@ -28,7 +28,7 @@ A beautiful gradient generator for React Native and Expo applications. Create li
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/burhanyilmaz/-expo-linear-gradient-generator
+git clone https://github.com/burhanyilmaz/linear-gradient-generator
 cd expoGradientGenerator
 ```
 
