@@ -1,5 +1,6 @@
 import CodeOutput from "@/components/CodeOutput";
 import ColorSection from "@/components/ColorSection";
+import DeveloperInfo from "@/components/DeveloperInfo";
 import DirectionSection from "@/components/DirectionSection";
 import GradientPreview from "@/components/GradientPreview";
 import Header from "@/components/Header";
@@ -136,6 +137,7 @@ export default function Index() {
             )}
           </View>
         </View>
+        <DeveloperInfo />
       </ScrollView>
     </>
   );
