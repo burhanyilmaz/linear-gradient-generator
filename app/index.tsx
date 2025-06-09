@@ -2,6 +2,7 @@ import CodeOutput from "@/components/CodeOutput";
 import ColorSection from "@/components/ColorSection";
 import DirectionSection from "@/components/DirectionSection";
 import GradientPreview from "@/components/GradientPreview";
+import Header from "@/components/Header";
 import PresetSection from "@/components/PresetSection";
 import { useHandleGradientGenerator } from "@/hooks/useHandleGradientGenerator";
 import { getCodeOutput } from "@/utils/helpers";
@@ -75,67 +76,68 @@ export default function Index() {
   );
 
   return (
-    <ScrollView
-      style={[styles.container, { paddingTop: top }]}
-      contentContainerStyle={styles.scrollContent}
-    >
-      <Stack.Screen options={{ headerShown: false }} />
+    <>
+      <Stack.Screen options={{ header: () => <Header /> }} />
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        style={[styles.container, { paddingTop: top + 72 }]}
+      >
+        <View style={styles.header}>
+          <Text style={styles.title}>Expo Linear Gradient Generator</Text>
+          <Text style={styles.subtitle}>
+            Create beautiful gradients for your React Native apps
+          </Text>
+        </View>
 
-      <View style={styles.header}>
-        <Text style={styles.title}>Expo Linear Gradient Generator</Text>
-        <Text style={styles.subtitle}>
-          Create beautiful gradients for your React Native apps
-        </Text>
-      </View>
-
-      <View style={mainContentStyle}>
-        <View style={leftColumnStyle}>
-          <View style={styles.previewSection}>
-            <Text style={styles.sectionTitle}>Preview</Text>
-            <GradientPreview config={gradientConfig} />
+        <View style={mainContentStyle}>
+          <View style={leftColumnStyle}>
+            <View style={styles.previewSection}>
+              <Text style={styles.sectionTitle}>Preview</Text>
+              <GradientPreview config={gradientConfig} />
+            </View>
+            {isTablet && (
+              <CodeOutput
+                isTablet={isTablet}
+                codeOutput={codeOutput}
+                onCopyCode={onCopyCode}
+              />
+            )}
           </View>
-          {isTablet && (
-            <CodeOutput
+
+          <View style={rightColumnStyle}>
+            <ColorSection
+              colors={colors}
               isTablet={isTablet}
-              codeOutput={codeOutput}
-              onCopyCode={onCopyCode}
+              addColor={addColor}
+              locations={locations}
+              updateColor={updateColor}
+              removeColor={removeColor}
+              updateLocation={updateLocation}
             />
-          )}
-        </View>
 
-        <View style={rightColumnStyle}>
-          <ColorSection
-            colors={colors}
-            isTablet={isTablet}
-            addColor={addColor}
-            locations={locations}
-            updateColor={updateColor}
-            removeColor={removeColor}
-            updateLocation={updateLocation}
-          />
-
-          <DirectionSection
-            endX={endX}
-            endY={endY}
-            startX={startX}
-            startY={startY}
-            setEndX={setEndX}
-            setEndY={setEndY}
-            setStartX={setStartX}
-            setStartY={setStartY}
-          />
-
-          <PresetSection applyPreset={applyPreset} />
-          {!isTablet && (
-            <CodeOutput
-              isTablet={isTablet}
-              codeOutput={codeOutput}
-              onCopyCode={onCopyCode}
+            <DirectionSection
+              endX={endX}
+              endY={endY}
+              startX={startX}
+              startY={startY}
+              setEndX={setEndX}
+              setEndY={setEndY}
+              setStartX={setStartX}
+              setStartY={setStartY}
             />
-          )}
+
+            <PresetSection applyPreset={applyPreset} />
+            {!isTablet && (
+              <CodeOutput
+                isTablet={isTablet}
+                codeOutput={codeOutput}
+                onCopyCode={onCopyCode}
+              />
+            )}
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 }
 
